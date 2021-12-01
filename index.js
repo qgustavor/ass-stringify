@@ -1,7 +1,5 @@
 'use strict';
 
-var pickValues = require('pick-values');
-
 
 var stringifyDescriptor = {
   comment: function (comment) {
@@ -11,7 +9,10 @@ var stringifyDescriptor = {
     return formatSpec.key + ': ' + formatSpec.value.join(', ');
   },
   properties: function (properties, format) {
-    return properties.key + ': ' + pickValues(properties.value, format).join(',');
+    var values = format.map(function (key) {
+      return properties.value[key];
+    });
+    return properties.key + ': ' + values.join(',');
   },
   raw: function (raw) {
     return raw.key + ': ' + raw.value;

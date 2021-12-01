@@ -30,10 +30,7 @@
     "generate",
     "text"
   ],
-  "dependencies": {
-    "pick-values": "^1.0.0"
-  },
   "devDependencies": {
-    "tape": "^3.4.0"
+    "tape": "^5.3.2"
   }
 }
