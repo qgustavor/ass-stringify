@@ -1,49 +1,42 @@
-'use strict';
-
-
-var stringifyDescriptor = {
-  comment: function (comment) {
-    return ';' + comment.value;
+const stringifyDescriptor = {
+  comment ({ value }) {
+    return `;${value}`
   },
-  formatSpec: function (formatSpec) {
-    return formatSpec.key + ': ' + formatSpec.value.join(', ');
+  formatSpec ({ key, value }) {
+    return `${key}: ${value.join(', ')}`
   },
-  properties: function (properties, format) {
-    var values = format.map(function (key) {
-      return properties.value[key];
-    });
-    return properties.key + ': ' + values.join(',');
+  properties ({ value, key }, format) {
+    const values = format.map(key => value[key])
+    return `${key}: ${values.join(',')}`
   },
-  raw: function (raw) {
-    return raw.key + ': ' + raw.value;
+  raw ({ key, value }) {
+    return `${key}: ${value}`
   }
-};
+}
 
+const stringifySection = section => {
+  const head = `[${section.section}]`
+  let format = null
 
-var stringifySection = function (section) {
-  var head = '[' + section.section + ']';
-  var format = null;
+  const body = section.body.map(descriptor => {
+    const method = descriptor.type === 'comment'
+      ? 'comment'
+      : descriptor.key === 'Format'
+          ? 'formatSpec'
+          : format
+            ? 'properties'
+            : 'raw'
 
-  var body = section.body.map(function (descriptor) {
-    var method = (descriptor.type == 'comment') ? 'comment'
-               : (descriptor.key == 'Format') ? 'formatSpec'
-               : format ? 'properties'
-               : 'raw';
-
-    if (method == 'formatSpec') {
-      format = descriptor.value;
+    if (method === 'formatSpec') {
+      format = descriptor.value
     }
 
-    return stringifyDescriptor[method](descriptor, format);
-  }).join('\n');
+    return stringifyDescriptor[method](descriptor, format)
+  }).join('\n')
 
-  return body ? head + '\n' + body : head;
-};
+  return body ? `${head}\n${body}` : head
+}
 
+const stringifyAss = ass => ass.map(stringifySection).join('\n\n') + '\n'
 
-var stringifyAss = function (ass) {
-  return ass.map(stringifySection).join('\n\n') + '\n';
-};
-
-
-module.exports = stringifyAss;
+export default stringifyAss
