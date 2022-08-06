@@ -1,17 +1,11 @@
-'use strict';
+import stringify from '../index.js';
+import test from 'tape';
+import fs from 'fs';
 
-var stringify = require('..');
+const sample = fs.readFileSync(new URL('sample.ass', import.meta.url), { encoding: 'utf8' });
+const subtitle = JSON.parse(fs.readFileSync(new URL('sample.json', import.meta.url), { encoding: 'utf-8' }));
 
-var test = require('tape');
-
-var fs = require('fs');
-
-
-var sample = fs.readFileSync(__dirname + '/sample.ass', { encoding: 'utf8' });
-var subtitle = require('./sample.json');
-
-
-test('ass-stringify', function (t) {
+test('ass-stringify', t => {
   t.equal(stringify(subtitle), sample);
   t.end();
 });
