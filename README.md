@@ -29,7 +29,7 @@ Returns a text string. See `test/sample.ass` for an example.
 ## Install
 
 ```shell
-npm install ass-stringify
+npm install @qgustavor/ass-stringify
 ```
 
 ## License
