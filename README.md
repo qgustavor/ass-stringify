@@ -1,21 +1,21 @@
-[![npm](https://nodei.co/npm/ass-stringify.png)](https://nodei.co/npm/ass-stringify/)
-
 # ass-stringify
 
-[![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david]
+Stringify [ass-parser](https://www.npmjs.com/packages/@qgustavor/ass-parser) parse tree to plain SSA/ASS subtitle format. Forked from [eush77/ass-stringify](https://github.com/eush77/ass-stringify).
 
-Stringify [ass-parser](https://www.npmjs.com/packages/ass-parser) parse tree to plain SSA/ASS subtitle format.
+## Changes:
 
-[travis]: https://travis-ci.org/eush77/ass-stringify
-[travis-badge]: https://travis-ci.org/eush77/ass-stringify.svg
-[david]: https://david-dm.org/eush77/ass-stringify
-[david-badge]: https://david-dm.org/eush77/ass-stringify.png
+- All dependencies replaced with native modern JavaScript functions.
+- ES Modules instead of CommonJS.
+
+## Demo
+
+[https://codepen.io/qgustavor/full/YzaRXeX](https://codepen.io/qgustavor/full/YzaRXeX)
 
 ## API
 
 ### `assStringify(ass)`
 
-Returns a text string. See `test/sample.ass` for an example.
+Returns a text string. See the demo or `test/sample.ass` for an example.
 
 ## References
 
@@ -24,7 +24,7 @@ Returns a text string. See `test/sample.ass` for an example.
 
 ## Related
 
-- [ass-parser](https://www.npmjs.com/packages/ass-parser) - SSA/ASS parser.
+- [@qgustavor/ass-parser](https://www.npmjs.com/packages/@qgustavor/ass-parser) - SSA/ASS parser.
 
 ## Install
 
