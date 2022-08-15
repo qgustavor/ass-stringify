@@ -1,6 +1,6 @@
 # ass-stringify
 
-Stringify [ass-parser](https://www.npmjs.com/packages/@qgustavor/ass-parser) parse tree to plain SSA/ASS subtitle format. Forked from [eush77/ass-stringify](https://github.com/eush77/ass-stringify).
+Stringify [ass-parser](https://www.npmjs.com/package/@qgustavor/ass-parser) parse tree to plain SSA/ASS subtitle format. Forked from [eush77/ass-stringify](https://github.com/eush77/ass-stringify).
 
 ## Changes:
 
@@ -24,7 +24,7 @@ Returns a text string. See the demo or `test/sample.ass` for an example.
 
 ## Related
 
-- [@qgustavor/ass-parser](https://www.npmjs.com/packages/@qgustavor/ass-parser) - SSA/ASS parser.
+- [@qgustavor/ass-parser](https://www.npmjs.com/package/@qgustavor/ass-parser) - SSA/ASS parser.
 
 ## Install
 
