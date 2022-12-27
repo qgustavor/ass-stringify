@@ -6,6 +6,7 @@ Stringify [ass-parser](https://www.npmjs.com/package/@qgustavor/ass-parser) pars
 
 - All dependencies replaced with native modern JavaScript functions.
 - ES Modules instead of CommonJS.
+- Added options.
 
 ## Demo
 
@@ -13,9 +14,15 @@ Stringify [ass-parser](https://www.npmjs.com/package/@qgustavor/ass-parser) pars
 
 ## API
 
-### `assStringify(ass)`
+### `assStringify(ass, options)`
 
 Returns a text string. See the demo or `test/sample.ass` for an example.
+
+Options is an object with the following keys:
+
+- `lineBreak`: defaults to `\n`, set to `\r\n` to use Windows' line breaks
+- `formatJoiner`: defaults to `, `, some subtitles use `,` instead
+- `sectionJoiner`: defaults to `lineBreak` repeated twice
 
 ## References
 
