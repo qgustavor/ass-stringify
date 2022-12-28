@@ -1,12 +1,24 @@
+const formatTimestamp = (time) => {
+  return new Date(time * 1000).toISOString().substr(12, 10)
+}
+
+const propertyMapper = (key, valueMap, options) => {
+  const value = valueMap[key]
+  if (typeof value === 'number' && options.timestampKeys.includes(key)) {
+    return formatTimestamp(value)
+  }
+  return value
+}
+
 const stringifyDescriptor = {
   comment ({ value }) {
     return `;${value}`
   },
-  formatSpec ({ key, value }, format, options) {
+  formatSpec ({ key, value }, options) {
     return `${key}: ${value.join(options.formatJoiner)}`
   },
-  properties ({ key, value }, format) {
-    const values = format.map(key => value[key])
+  properties ({ key, value }, options, format) {
+    const values = format.map(key => propertyMapper(key, value, options))
     return `${key}: ${values.join(',')}`
   },
   raw ({ key, value }) {
@@ -31,7 +43,7 @@ const stringifySection = (section, options) => {
       format = descriptor.value
     }
 
-    return stringifyDescriptor[method](descriptor, format, options)
+    return stringifyDescriptor[method](descriptor, options, format)
   }).join(options.lineBreak)
 
   return body ? `${head}${options.lineBreak}${body}` : head
@@ -41,6 +53,7 @@ const stringifyAss = (ass, options = {}) => {
   options.lineBreak ||= '\n'
   options.formatJoiner ||= ', '
   options.sectionJoiner ||= options.lineBreak.repeat(2)
+  options.timestampKeys ||= ['Start', 'End']
 
   return ass
     .map(section => stringifySection(section, options))

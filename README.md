@@ -7,6 +7,7 @@ Stringify [ass-parser](https://www.npmjs.com/package/@qgustavor/ass-parser) pars
 - All dependencies replaced with native modern JavaScript functions.
 - ES Modules instead of CommonJS.
 - Added options.
+- Format numeric timestamps.
 
 ## Demo
 
@@ -23,6 +24,7 @@ Options is an object with the following keys:
 - `lineBreak`: defaults to `\n`, set to `\r\n` to use Windows' line breaks
 - `formatJoiner`: defaults to `, `, some subtitles use `,` instead
 - `sectionJoiner`: defaults to `lineBreak` repeated twice
+- `timestampKeys`: defaults to `['Start', 'End']`, defines which keys can be formatted to timestamps when numbers are provided
 
 ## References
 
