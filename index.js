@@ -1,5 +1,5 @@
 const formatTimestamp = (time) => {
-  return new Date(time * 1000).toISOString().substr(12, 10)
+  return new Date(Math.round(time * 100) * 10).toISOString().substr(12, 10)
 }
 
 const propertyMapper = (key, valueMap, options) => {
